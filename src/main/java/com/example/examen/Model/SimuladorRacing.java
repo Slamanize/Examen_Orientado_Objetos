@@ -3,6 +3,7 @@ package com.example.examen.Model;
 public class SimuladorRacing extends EquipoGaming {
     private boolean tipoVolante;
     private int cantidadPedales;
+    private String tipo = "SimuladorRacing";
 
     public SimuladorRacing(String marca, String modelo, int anioAdquisicion, int horasUso, boolean tipoVolante, int cantidadPedales) {
         super(marca, modelo, anioAdquisicion, horasUso);
@@ -12,4 +13,5 @@ public class SimuladorRacing extends EquipoGaming {
 
     public boolean isTipoVolante() {return tipoVolante;}
     public int getCantidadPedales() {return cantidadPedales;}
+
 }
