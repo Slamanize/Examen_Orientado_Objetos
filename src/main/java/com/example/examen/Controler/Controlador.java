@@ -1,6 +1,7 @@
 package com.example.examen.Controler;
 
 import com.example.examen.Model.EquipoGaming;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -44,6 +45,12 @@ public class Controlador {
     @FXML private TableColumn<EquipoGaming, String> colRut;
 
     public void initialize(){
+        cmbTipo.getItems().setAll("PcGamer","Consola","SimuladorRacing");
+
+
+    }
+    // Metodos
+    public void tiposActivos(){
 
     }
 }
