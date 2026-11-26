@@ -1,12 +1,10 @@
 package com.example.examen.Controler;
 
+import com.example.examen.Model.EquipoGaming;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
+import java.util.Date;
 
 public class Controlador {
 
@@ -32,6 +30,20 @@ public class Controlador {
     @FXML private Button btnActualizar;
     @FXML private Button btnEliminar;
     @FXML private Button btnLimpiar;
-    @FXML private TableView<?> tblDatos;
     @FXML private Label lblMensaje;
+
+    @FXML private TableView<EquipoGaming> tblDatos;
+    @FXML private TableColumn<EquipoGaming,Integer> colId;
+    @FXML private TableColumn<EquipoGaming, String> colTipo;
+    @FXML private TableColumn<EquipoGaming, String> colMarca;
+    @FXML private TableColumn<EquipoGaming, String> colModelo;
+    @FXML private TableColumn<EquipoGaming, Date> colAnio;
+    @FXML private TableColumn<EquipoGaming, Integer> colHoras;
+    @FXML private TableColumn<EquipoGaming, String> colNombre;
+    @FXML private TableColumn<EquipoGaming, Integer> colTelefono;
+    @FXML private TableColumn<EquipoGaming, String> colRut;
+
+    public void initialize(){
+
+    }
 }
