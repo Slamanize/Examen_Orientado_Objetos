@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS ArenaGamers;
 CREATE DATABASE ArenaGamers CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
-USE EquipoGaming;
+USE ArenaGamers;
 
 CREATE TABLE clientes(
     rut                     varchar(10)         NOT NULL ,
@@ -8,7 +8,7 @@ CREATE TABLE clientes(
     apellido                varchar(30)         NOT NULL ,
     telefono                int(12)             NOT NULL ,
     CONSTRAINT              pk_clientes         PRIMARY KEY (rut)
-)
+);
 
 CREATE TABLE EquipoGaming(
     uid                     varchar(6)          NOT NULL AUTO_INCREMENT,
@@ -25,4 +25,4 @@ CREATE TABLE EquipoGaming(
     rut                     varchar(10)         NOT NULL,
     CONSTRAINT pk_EquipoGaming PRIMARY KEY (uid),
     CONSTRAINT fk_rut FOREIGN KEY (rut) REFERENCES clientes (rut)
-)
+);
