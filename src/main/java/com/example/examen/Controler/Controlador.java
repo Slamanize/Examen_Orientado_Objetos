@@ -53,7 +53,11 @@ public class Controlador {
         colModelo.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getModelo()));
         colAnio.setCellValueFactory(c-> new SimpleObjectProperty<>(c.getValue().getAnioAdquisicion()));
         colHoras.setCellValueFactory(c-> new SimpleObjectProperty<>(c.getValue().getHorasUso()));
-        colNombre.setCellValueFactory(c-> new SimpleObjectProperty<>());
+        colNombre.setCellValueFactory(c-> new SimpleObjectProperty<>());//Falta code aqui, los tipo de datos son de otro tipo de modelo
+        colTelefono.setCellValueFactory(c-> new SimpleObjectProperty<>());
+        colRut.setCellValueFactory(c-> new SimpleObjectProperty<>());
+
+        limpiar();
     }
     // Metodos
     public void tiposActivos(){
