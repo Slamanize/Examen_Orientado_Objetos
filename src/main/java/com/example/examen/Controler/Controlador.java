@@ -51,6 +51,28 @@ public class Controlador {
     }
     // Metodos
     public void tiposActivos(){
+    }
+
+    public void limpiar(){
+        txtRut.clear();
+        txtNombre.clear();
+        txtApellido.clear();
+        txtTelefono.clear();
+        cmbTipo.getSelectionModel().clearSelection();
+        txtMarca.clear();
+        txtModelo.clear();
+        txtAnio.clear();
+        txtHorasuso.clear();
+        txtRam.clear();
+        chkTieneGPU.setSelected(false);
+        txtGen.clear();
+        txtAlmacenamiento.clear();
+        cmbTipoVolante.getSelectionModel().clearSelection();
+        txtCantPedales.clear();
+        cmbEstado.getSelectionModel().clearSelection();
+        txtIdUnico.clear();
+        lblMensaje.setText("El formulario se a limpiado correctamente.");
+        lblMensaje.setStyle("-fx-text-fill: #1b5e20;");
 
     }
 }
