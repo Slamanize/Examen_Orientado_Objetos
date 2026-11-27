@@ -6,9 +6,8 @@ import com.example.examen.Model.EquipoGaming;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-public class Repositorio {
+public class RepositorioEquipoGaming {
 
 
     public boolean insertar(EquipoGaming equipoGaming) throws SQLException {
