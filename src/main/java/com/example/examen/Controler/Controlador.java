@@ -34,7 +34,7 @@ public class Controlador {
     @FXML private Label lblMensaje;
 
     @FXML private TableView<EquipoGaming> tblDatos;
-    @FXML private TableColumn<EquipoGaming,Integer> colId;
+    @FXML private TableColumn<EquipoGaming,String> colId;
     @FXML private TableColumn<EquipoGaming, String> colTipo;
     @FXML private TableColumn<EquipoGaming, String> colMarca;
     @FXML private TableColumn<EquipoGaming, String> colModelo;
@@ -47,7 +47,7 @@ public class Controlador {
     public void initialize(){
         cmbTipo.getItems().setAll("PcGamer","Consola","SimuladorRacing");
 
-        colId.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getId()));
+        colId.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getUid()));
         colTipo.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getUid()));//que es el uid?
         colMarca.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getMarca()));
         colModelo.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getModelo()));
