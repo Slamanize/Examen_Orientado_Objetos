@@ -8,13 +8,16 @@ public abstract class EquipoGaming {
     private String modelo;
     private int anioAdquisicion;
     private int horasUso;
+    private int id;
 
-    public EquipoGaming(String marca, String modelo, int anioAdquisicion, int horasUso, String uid) {
+
+    public EquipoGaming(String uid, String marca, String modelo, int anioAdquisicion, int horasUso, int id) {
         this.uid = uid;
         this.marca = marca;
         this.modelo = modelo;
         this.anioAdquisicion = anioAdquisicion;
         this.horasUso = horasUso;
+        this.id = id;
     }
 
     public String getUid() {return uid;}
@@ -22,4 +25,5 @@ public abstract class EquipoGaming {
     public String getModelo() {return modelo;}
     public int getAnioAdquisicion() {return anioAdquisicion;}
     public int getHorasUso() {return horasUso;}
+    public int getId() {return id;}
 }

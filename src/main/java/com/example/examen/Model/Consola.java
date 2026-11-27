@@ -5,11 +5,10 @@ public class Consola extends EquipoGaming {
     private int almacenamiento;
     private String tipo = "Consola";
 
-    public Consola(String marca, String modelo, int anioAdquisicion, int horasUso, String uid, int generacion, int almacenamiento, String tipo) {
-        super(marca, modelo, anioAdquisicion, horasUso, uid);
+    public Consola(String uid, String marca, String modelo, int anioAdquisicion, int horasUso, int id, int generacion, int almacenamiento) {
+        super(uid, marca, modelo, anioAdquisicion, horasUso, id);
         this.generacion = generacion;
         this.almacenamiento = almacenamiento;
-        this.tipo = tipo;
     }
 
     public int getGeneracion() {return generacion;}

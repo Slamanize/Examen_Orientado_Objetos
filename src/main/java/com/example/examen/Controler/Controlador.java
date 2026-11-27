@@ -38,7 +38,7 @@ public class Controlador {
     @FXML private TableColumn<EquipoGaming, String> colTipo;
     @FXML private TableColumn<EquipoGaming, String> colMarca;
     @FXML private TableColumn<EquipoGaming, String> colModelo;
-    @FXML private TableColumn<EquipoGaming, Date> colAnio;
+    @FXML private TableColumn<EquipoGaming, Integer> colAnio;
     @FXML private TableColumn<EquipoGaming, Integer> colHoras;
     @FXML private TableColumn<EquipoGaming, String> colNombre;
     @FXML private TableColumn<EquipoGaming, Integer> colTelefono;
@@ -47,7 +47,13 @@ public class Controlador {
     public void initialize(){
         cmbTipo.getItems().setAll("PcGamer","Consola","SimuladorRacing");
 
-
+        colId.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getId()));
+        colTipo.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getUid()));//que es el uid?
+        colMarca.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getMarca()));
+        colModelo.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getModelo()));
+        colAnio.setCellValueFactory(c-> new SimpleObjectProperty<>(c.getValue().getAnioAdquisicion()));
+        colHoras.setCellValueFactory(c-> new SimpleObjectProperty<>(c.getValue().getHorasUso()));
+        colNombre.setCellValueFactory(c-> new SimpleObjectProperty<>());
     }
     // Metodos
     public void tiposActivos(){
