@@ -8,16 +8,16 @@ public abstract class EquipoGaming {
     private String modelo;
     private int anioAdquisicion;
     private int horasUso;
-    private int id;
+    private String tipo;
 
 
-    public EquipoGaming(String uid, String marca, String modelo, int anioAdquisicion, int horasUso, int id) {
+    public EquipoGaming(String uid, String marca, String modelo, int anioAdquisicion, int horasUso, String tipo) {
         this.uid = uid;
         this.marca = marca;
         this.modelo = modelo;
         this.anioAdquisicion = anioAdquisicion;
         this.horasUso = horasUso;
-        this.id = id;
+        this.tipo = tipo;
     }
 
     public String getUid() {return uid;}
@@ -25,5 +25,9 @@ public abstract class EquipoGaming {
     public String getModelo() {return modelo;}
     public int getAnioAdquisicion() {return anioAdquisicion;}
     public int getHorasUso() {return horasUso;}
-    public int getId() {return id;}
+    public String getTipo() {return tipo;}
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 }

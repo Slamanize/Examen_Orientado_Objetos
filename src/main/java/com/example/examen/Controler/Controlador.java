@@ -95,15 +95,15 @@ public class Controlador {
             EquipoGaming equipo;
             if (tipo.equals("PcGamer")) {
                 int ram = Integer.parseInt(txtRam.getText().trim());
-                equipo = new PCGamer(marca, modelo, anio, horas, uid, ram, chkTieneGPU.isSelected(), tipo);
+                equipo = new PCGamer(uid,marca, modelo, anio, horas,"", ram, chkTieneGPU.isSelected());
             } else if (tipo.equals("Consola")) {
                 int gen = Integer.parseInt(txtGen.getText().trim());
                 int almacenamiento = Integer.parseInt(txtAlmacenamiento.getText().trim());
-                equipo = new Consola(marca, modelo, anio, horas, uid, gen, almacenamiento, tipo);
+                equipo = new Consola(uid,marca, modelo, anio, horas,"", gen, almacenamiento);
             } else {
                 boolean conVolante = "Con volante".equals(cmbTipoVolante.getValue());
                 int pedales = Integer.parseInt(txtCantPedales.getText().trim());
-                equipo = new SimuladorRacing(marca, modelo, anio, horas, uid, conVolante, pedales, tipo);
+                equipo = new SimuladorRacing(uid,marca, modelo, anio, horas,"", conVolante, pedales);
             }
 
             Cliente cliente = new Cliente(rut, apellido, nombre, telefono, new ArrayList<>());
