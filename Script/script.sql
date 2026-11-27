@@ -4,13 +4,14 @@ USE EquipoGaming;
 
 CREATE TABLE clientes(
     rut                     varchar(10)         NOT NULL ,
-    nombre                  varchar(40)         NOT NULL ,
+    nombre                  varchar(30)         NOT NULL ,
+    apellido                varchar(30)         NOT NULL ,
     telefono                int(12)             NOT NULL ,
     CONSTRAINT              pk_clientes         PRIMARY KEY (rut)
 )
 
 CREATE TABLE EquipoGaming(
-    id                      int                 NOT NULL AUTO_INCREMENT,
+    uid                     varchar(6)          NOT NULL AUTO_INCREMENT,
     marca                   varchar(60)         not null ,
     modelo                  varchar(60)         not null ,
     anioAdquisicion         int                 not null ,
@@ -22,6 +23,6 @@ CREATE TABLE EquipoGaming(
     generacion              int(2)              NULL,
     almacenamiente          int(10)             NULL,
     rut                     varchar(10)         NOT NULL,
-    CONSTRAINT pk_EquipoGaming PRIMARY KEY (id),
+    CONSTRAINT pk_EquipoGaming PRIMARY KEY (uid),
     CONSTRAINT fk_rut FOREIGN KEY (rut) REFERENCES clientes (rut)
 )

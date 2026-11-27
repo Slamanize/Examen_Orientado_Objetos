@@ -35,12 +35,25 @@ public class Repositorio {
             ps.setString(2, equipoGaming.getModelo());
             ps.setInt(3, equipoGaming.getAnioAdquisicion());
             ps.setInt(4, equipoGaming.getHorasUso());
-            ps.setString(5, equipoGaming.getUid());
+
 
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
+    }
+
+    private boolean eliminar(EquipoGaming equipoGaming) throws SQLException {
+        String sql = "DELETE FROM equipoGaming WHERE uid = ?";
+        try (Connection conn = ConexionBD.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, equipoGaming.getUid());
+            int filasAfectadas = ps.executeUpdate();
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
