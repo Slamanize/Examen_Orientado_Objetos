@@ -14,4 +14,8 @@ public class Consola extends EquipoGaming {
     public int getGeneracion() {return generacion;}
     public int getAlmacenamiento() {return almacenamiento;}
 
+    @Override
+    public String getTipo() {
+        return super.getTipo();
+    }
 }

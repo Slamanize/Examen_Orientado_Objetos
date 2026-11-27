@@ -9,12 +9,14 @@ public class PCGamer extends EquipoGaming{
         super(uid, marca, modelo, anioAdquisicion, horasUso, tipo);
         this.memoriaRam = memoriaRam;
         this.tieneGPU = tieneGPU;
+        setTipo("PcGamer");
     }
 
     public int getMemoriaRam() {return memoriaRam;}
     public boolean isTieneGPU() {return tieneGPU;}
 
+    @Override
     public String getTipo() {
-        return tipo;
+        return super.getTipo();
     }
 }
