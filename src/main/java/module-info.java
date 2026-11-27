@@ -5,6 +5,7 @@ module com.example.examen {
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires java.rmi;
 
     opens com.example.examen to javafx.fxml;
     exports com.example.examen;
