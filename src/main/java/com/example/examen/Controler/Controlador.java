@@ -51,6 +51,7 @@ public class Controlador {
 
     public void initialize(){
         cmbTipo.getItems().setAll("PcGamer","Consola","SimuladorRacing");
+        cmbTipo.valueProperty().addListener((obs,anterior,actual)->tiposActivos());
 
         colId.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getUid()));
         colTipo.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getUid()));//que es el uid?
@@ -132,6 +133,15 @@ public class Controlador {
     }
     // Metodos
     public void tiposActivos(){
+        boolean esTipoC = "Consola".equals(cmbTipo.getValue());
+        boolean esTipoP = "PcGamer".equals(cmbTipo.getValue());
+        boolean esTipoS = "SimuladorRacing".equals(cmbTipo.getValue());
+        txtGen.setDisable(!esTipoC);
+        txtAlmacenamiento.setDisable(!esTipoC);
+        txtCantPedales.setDisable(!esTipoS);
+        cmbTipoVolante.setDisable(!esTipoS);
+        txtRam.setDisable(!esTipoP);
+        chkTieneGPU.setDisable(!esTipoP);
     }
 
 
