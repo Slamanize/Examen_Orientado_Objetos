@@ -56,16 +56,6 @@
                         <Insets bottom="47.0" left="30.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Label text="-" GridPane.columnIndex="1">
-                     <GridPane.margin>
-                        <Insets bottom="46.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <TextField fx:id="txtDv" prefHeight="25.0" prefWidth="105.0" promptText="Ej k" GridPane.columnIndex="1">
-                     <GridPane.margin>
-                        <Insets bottom="46.0" left="5.0" right="130.0" />
-                     </GridPane.margin>
-                  </TextField>
                   <Label text="Nombre:">
                      <GridPane.margin>
                         <Insets top="10.0" />
@@ -165,6 +155,16 @@
                         <Insets left="160.0" top="10.0" />
                      </GridPane.margin>
                   </Label>
+                  <Label text="Estado del equipo:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets top="65.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ComboBox fx:id="cmbEstado" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="105.0" top="65.0" />
+                     </GridPane.margin>
+                  </ComboBox>
                </children>
             </GridPane>
          </children>
@@ -264,26 +264,6 @@
                         <Insets left="115.0" right="5.0" top="65.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Label text="Identificador Unico:" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Label>
-                  <TextField fx:id="txtIdUnico" promptText="Ej: PC000- CON00-SIM000" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="105.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <Label text="Estado del equipo:" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets top="30.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <ComboBox fx:id="cmbEstado" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="105.0" top="30.0" />
-                     </GridPane.margin>
-                  </ComboBox>
                </children>
             </GridPane>
             <GridPane prefHeight="140.0" prefWidth="243.0">

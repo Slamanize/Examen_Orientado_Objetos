@@ -15,7 +15,6 @@ import java.util.Date;
 public class Controlador {
 
     @FXML private TextField txtRut;
-    @FXML private TextField txtDv;
     @FXML private TextField txtNombre;
     @FXML private TextField txtApellido;
     @FXML private TextField txtTelefono;
@@ -52,6 +51,8 @@ public class Controlador {
     public void initialize(){
         cmbTipo.getItems().setAll("PcGamer","Consola","SimuladorRacing");
         cmbTipo.valueProperty().addListener((obs,anterior,actual)->tiposActivos());
+        cmbTipoVolante.getItems().setAll("Estandar", "Profesional");
+        cmbEstado.getItems().setAll("Disponible", "Reservado", "En Uso", "Mantenimiento");
 
         colId.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getUid()));
         colTipo.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getUid()));//que es el uid?
@@ -74,7 +75,7 @@ public class Controlador {
     @FXML
     public void agregar() {
         try {
-            String rut = txtRut.getText().trim() + "-" + txtDv.getText().trim();
+            String rut = txtRut.getText().trim();
             String nombre = txtNombre.getText().trim();
             String apellido = txtApellido.getText().trim();
             int telefono = Integer.parseInt(txtTelefono.getText().trim());
@@ -165,7 +166,6 @@ public class Controlador {
         cmbTipoVolante.getSelectionModel().clearSelection();
         txtCantPedales.clear();
         cmbEstado.getSelectionModel().clearSelection();
-        txtIdUnico.clear();
         lblMensaje.setText("El formulario se a limpiado correctamente.");
         lblMensaje.setStyle("-fx-text-fill: #1b5e20;");
 
