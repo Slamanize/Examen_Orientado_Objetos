@@ -11,7 +11,7 @@ CREATE TABLE clientes(
 )
 
 CREATE TABLE EquipoGaming(
-    uid                     varchar(6)          NOT NULL ,
+    uid                     varchar(6)          NOT NULL AUTO_INCREMENT,
     marca                   varchar(60)         not null ,
     modelo                  varchar(60)         not null ,
     anioAdquisicion         int                 not null ,
