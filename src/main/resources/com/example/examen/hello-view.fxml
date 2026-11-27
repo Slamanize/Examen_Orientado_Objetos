@@ -297,7 +297,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="btnAgregar" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Agregar" GridPane.rowIndex="1">
+                  <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" prefHeight="25.0" prefWidth="75.0" text="Agregar" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="40.0" top="25.0" />
                      </GridPane.margin>
@@ -312,7 +312,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="btnLimpiar" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Limpiar" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="btnLimpiar" mnemonicParsing="false" onAction="#limpiar" prefHeight="25.0" prefWidth="75.0" text="Limpiar" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" top="25.0" />
                      </GridPane.margin>

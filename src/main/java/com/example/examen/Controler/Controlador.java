@@ -1,10 +1,15 @@
 package com.example.examen.Controler;
 
-import com.example.examen.Model.EquipoGaming;
+import com.example.examen.Model.*;
+import com.example.examen.Repository.RepositorioCliente;
+import com.example.examen.Repository.RepositorioEquipoGaming;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Controlador {
@@ -59,9 +64,79 @@ public class Controlador {
 
         limpiar();
     }
+
+
+    private final RepositorioCliente repoCliente = new RepositorioCliente();
+    private final RepositorioEquipoGaming repoEquipoGaming = new RepositorioEquipoGaming();
+    private final ObservableList<EquipoGaming> listaEquipos = FXCollections.observableArrayList();
+
+    @FXML
+    public void agregar() {
+        try {
+            String rut = txtRut.getText().trim() + "-" + txtDv.getText().trim();
+            String nombre = txtNombre.getText().trim();
+            String apellido = txtApellido.getText().trim();
+            int telefono = Integer.parseInt(txtTelefono.getText().trim());
+
+            String tipo = cmbTipo.getValue();
+            String marca = txtMarca.getText().trim();
+            String modelo = txtModelo.getText().trim();
+            int anio = Integer.parseInt(txtAnio.getText().trim());
+            int horas = Integer.parseInt(txtHorasuso.getText().trim());
+            String uid = txtIdUnico.getText().trim();
+
+            if (tipo == null || rut.length() < 3 || nombre.isEmpty() || apellido.isEmpty()
+                    || marca.isEmpty() || modelo.isEmpty() || uid.isEmpty()) {
+                lblMensaje.setText("Completa todos los campos obligatorios.");
+                lblMensaje.setStyle("-fx-text-fill: #b71c1c;");
+                return;
+            }
+
+            EquipoGaming equipo;
+            if (tipo.equals("PcGamer")) {
+                int ram = Integer.parseInt(txtRam.getText().trim());
+                equipo = new PCGamer(marca, modelo, anio, horas, uid, ram, chkTieneGPU.isSelected(), tipo);
+            } else if (tipo.equals("Consola")) {
+                int gen = Integer.parseInt(txtGen.getText().trim());
+                int almacenamiento = Integer.parseInt(txtAlmacenamiento.getText().trim());
+                equipo = new Consola(marca, modelo, anio, horas, uid, gen, almacenamiento, tipo);
+            } else {
+                boolean conVolante = "Con volante".equals(cmbTipoVolante.getValue());
+                int pedales = Integer.parseInt(txtCantPedales.getText().trim());
+                equipo = new SimuladorRacing(marca, modelo, anio, horas, uid, conVolante, pedales, tipo);
+            }
+
+            Cliente cliente = new Cliente(rut, apellido, nombre, telefono, new ArrayList<>());
+
+            // El cliente primero, porque el equipo depende de él por la llave foránea
+            repoCliente.insertar(cliente);
+            boolean ok = repoEquipoGaming.insertar(equipo, rut);
+
+            if (ok) {
+                listaEquipos.add(equipo);
+                limpiar();
+                lblMensaje.setText("Equipo agregado correctamente.");
+                lblMensaje.setStyle("-fx-text-fill: #1b5e20;");
+            } else {
+                lblMensaje.setText("No se pudo guardar en la base de datos.");
+                lblMensaje.setStyle("-fx-text-fill: #b71c1c;");
+            }
+        } catch (NumberFormatException e) {
+            lblMensaje.setText("Revisa que los campos numéricos tengan solo números.");
+            lblMensaje.setStyle("-fx-text-fill: #b71c1c;");
+        } catch (Exception e) {
+            e.printStackTrace();
+            lblMensaje.setText("Ocurrió un error al agregar.");
+            lblMensaje.setStyle("-fx-text-fill: #b71c1c;");
+        }
+    }
     // Metodos
     public void tiposActivos(){
     }
+
+
+
+
 
     public void limpiar(){
         txtRut.clear();
