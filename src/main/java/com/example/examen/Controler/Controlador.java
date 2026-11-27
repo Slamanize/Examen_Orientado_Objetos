@@ -23,7 +23,7 @@ public class Controlador {
     @FXML private TextField txtMarca;
     @FXML private TextField txtModelo;
     @FXML private TextField txtAnio;
-    @FXML private TextField txtHorasuso;
+    @FXML private TextField txtHorasUso;
     @FXML private TextField txtRam;
     @FXML private CheckBox chkTieneGPU;
     @FXML private TextField txtGen;
@@ -44,7 +44,7 @@ public class Controlador {
     @FXML private TableColumn<EquipoGaming, String> colMarca;
     @FXML private TableColumn<EquipoGaming, String> colModelo;
     @FXML private TableColumn<EquipoGaming, Integer> colAnio;
-    @FXML private TableColumn<EquipoGaming, Integer> colHoras;
+    @FXML private TableColumn<EquipoGaming, Integer> colHorasUso;
     @FXML private TableColumn<EquipoGaming, String> colNombre;
     @FXML private TableColumn<EquipoGaming, Integer> colTelefono;
     @FXML private TableColumn<EquipoGaming, String> colRut;
@@ -57,7 +57,7 @@ public class Controlador {
         colMarca.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getMarca()));
         colModelo.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getModelo()));
         colAnio.setCellValueFactory(c-> new SimpleObjectProperty<>(c.getValue().getAnioAdquisicion()));
-        colHoras.setCellValueFactory(c-> new SimpleObjectProperty<>(c.getValue().getHorasUso()));
+        colHorasUso.setCellValueFactory(c-> new SimpleObjectProperty<>(c.getValue().getHorasUso()));
         colNombre.setCellValueFactory(c-> new SimpleObjectProperty<>());//Falta code aqui, los tipo de datos son de otro tipo de modelo
         colTelefono.setCellValueFactory(c-> new SimpleObjectProperty<>());
         colRut.setCellValueFactory(c-> new SimpleObjectProperty<>());
@@ -82,7 +82,7 @@ public class Controlador {
             String marca = txtMarca.getText().trim();
             String modelo = txtModelo.getText().trim();
             int anio = Integer.parseInt(txtAnio.getText().trim());
-            int horas = Integer.parseInt(txtHorasuso.getText().trim());
+            int horas = Integer.parseInt(txtHorasUso.getText().trim());
             String uid = txtIdUnico.getText().trim();
 
             if (tipo == null || rut.length() < 3 || nombre.isEmpty() || apellido.isEmpty()
@@ -147,7 +147,7 @@ public class Controlador {
         txtMarca.clear();
         txtModelo.clear();
         txtAnio.clear();
-        txtHorasuso.clear();
+        txtHorasUso.clear();
         txtRam.clear();
         chkTieneGPU.setSelected(false);
         txtGen.clear();
