@@ -1,55 +1,105 @@
 package com.example.examen.Repository;
 
 import com.example.examen.Conexion.ConexionBD;
+import com.example.examen.Model.Consola;
 import com.example.examen.Model.EquipoGaming;
+import com.example.examen.Model.PCGamer;
+import com.example.examen.Model.SimuladorRacing;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 
 public class RepositorioEquipoGaming {
 
-
-    public boolean insertar(EquipoGaming equipoGaming) throws SQLException {
-        String sql = "INSERT INTO EquipoGaming (marca, modelo, anioAdquisicion, horasUso) VALUES (?, ?, ?)";
-        try (Connection conn = ConexionBD.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, equipoGaming.getMarca());
-            ps.setString(2, equipoGaming.getModelo());
-            ps.setInt(3, equipoGaming.getAnioAdquisicion());
-            ps.setInt(4, equipoGaming.getHorasUso());
-
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    private boolean actualizar(EquipoGaming equipoGaming) throws SQLException {
-        String sql = "UPDATE equipoGaming SET marca= ?, modelo = ?, anioAdquisicion = ?, horaUso = ? WHERE uid = ? ";
-        try (Connection conn = ConexionBD.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, equipoGaming.getMarca());
-            ps.setString(2, equipoGaming.getModelo());
-            ps.setInt(3, equipoGaming.getAnioAdquisicion());
-            ps.setInt(4, equipoGaming.getHorasUso());
-
-
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    private boolean eliminar(EquipoGaming equipoGaming) throws SQLException {
-        String sql = "DELETE FROM equipoGaming WHERE uid = ?";
+    public boolean insertar(EquipoGaming equipoGaming, String rutCliente) throws SQLException {
+        String sql = "INSERT INTO EquipoGaming (uid, marca, modelo, anioAdquisicion, horasUso, ram, gpu, tipoVolante, cantVolantes, generacion, almacenamiento, rut) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = ConexionBD.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, equipoGaming.getUid());
-            int filasAfectadas = ps.executeUpdate();
-            return filasAfectadas > 0;
+            ps.setString(2, equipoGaming.getMarca());
+            ps.setString(3, equipoGaming.getModelo());
+            ps.setInt(4, equipoGaming.getAnioAdquisicion());
+            ps.setInt(5, equipoGaming.getHorasUso());
+
+            if (equipoGaming instanceof PCGamer pc) {
+                ps.setInt(6, pc.getMemoriaRam());
+                ps.setBoolean(7, pc.isTieneGPU());
+                ps.setNull(8, Types.BOOLEAN);
+                ps.setNull(9, Types.INTEGER);
+                ps.setNull(10, Types.INTEGER);
+                ps.setNull(11, Types.INTEGER);
+            } else if (equipoGaming instanceof Consola c) {
+                ps.setNull(6, Types.INTEGER);
+                ps.setNull(7, Types.BOOLEAN);
+                ps.setNull(8, Types.BOOLEAN);
+                ps.setNull(9, Types.INTEGER);
+                ps.setInt(10, c.getGeneracion());
+                ps.setInt(11, c.getAlmacenamiento());
+            } else if (equipoGaming instanceof SimuladorRacing s) {
+                ps.setNull(6, Types.INTEGER);
+                ps.setNull(7, Types.BOOLEAN);
+                ps.setBoolean(8, s.isTipoVolante());
+                ps.setInt(9, s.getCantidadPedales());
+                ps.setNull(10, Types.INTEGER);
+                ps.setNull(11, Types.INTEGER);
+            }
+
+            ps.setString(12, rutCliente);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean actualizar(EquipoGaming equipoGaming) throws SQLException {
+        String sql = "UPDATE EquipoGaming SET marca = ?, modelo = ?, anioAdquisicion = ?, horasUso = ?, ram = ?, gpu = ?, tipoVolante = ?, cantVolantes = ?, generacion = ?, almacenamiento = ? WHERE uid = ?";
+        try (Connection conn = ConexionBD.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, equipoGaming.getMarca());
+            ps.setString(2, equipoGaming.getModelo());
+            ps.setInt(3, equipoGaming.getAnioAdquisicion());
+            ps.setInt(4, equipoGaming.getHorasUso());
+
+            if (equipoGaming instanceof PCGamer pc) {
+                ps.setInt(5, pc.getMemoriaRam());
+                ps.setBoolean(6, pc.isTieneGPU());
+                ps.setNull(7, Types.BOOLEAN);
+                ps.setNull(8, Types.INTEGER);
+                ps.setNull(9, Types.INTEGER);
+                ps.setNull(10, Types.INTEGER);
+            } else if (equipoGaming instanceof Consola c) {
+                ps.setNull(5, Types.INTEGER);
+                ps.setNull(6, Types.BOOLEAN);
+                ps.setNull(7, Types.BOOLEAN);
+                ps.setNull(8, Types.INTEGER);
+                ps.setInt(9, c.getGeneracion());
+                ps.setInt(10, c.getAlmacenamiento());
+            } else if (equipoGaming instanceof SimuladorRacing s) {
+                ps.setNull(5, Types.INTEGER);
+                ps.setNull(6, Types.BOOLEAN);
+                ps.setBoolean(7, s.isTipoVolante());
+                ps.setInt(8, s.getCantidadPedales());
+                ps.setNull(9, Types.INTEGER);
+                ps.setNull(10, Types.INTEGER);
+            }
+
+            ps.setString(11, equipoGaming.getUid());
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean eliminar(EquipoGaming equipoGaming) throws SQLException {
+        String sql = "DELETE FROM EquipoGaming WHERE uid = ?";
+        try (Connection conn = ConexionBD.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, equipoGaming.getUid());
+            return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
