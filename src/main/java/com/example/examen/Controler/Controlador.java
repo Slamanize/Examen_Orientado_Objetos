@@ -64,6 +64,8 @@ public class Controlador {
         colTelefono.setCellValueFactory(c-> new SimpleObjectProperty<>());
         colRut.setCellValueFactory(c-> new SimpleObjectProperty<>());
 
+        tblDatos.setPlaceholder(new Label("No hay Dispositivos registrados"));
+
         limpiar();
         mostrarTab();
     }

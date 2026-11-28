@@ -109,6 +109,7 @@ public class RepositorioEquipoGaming {
     public List<EquipoGaming> cargar()throws SQLException {
         List<EquipoGaming> equipoGamings = new ArrayList<>();
         String sql = "SELECT * FROM equipogaming";
+
          try(Connection conn = ConexionBD.getConnection();
              Statement ment = conn.createStatement();
              ResultSet res = ment.executeQuery(sql)){
@@ -120,7 +121,8 @@ public class RepositorioEquipoGaming {
                  int anioAdquisicion = res.getInt("anioAdquisicion");
                  int horasUso = res.getInt("horasUso");
                  String tipo = res.getString("tipo");
-                 if(tipo.equals("PCGamer")){
+
+                 if(tipo.equals("PcGamer")){
                      int ram = res.getInt("ram");
                      boolean tieneGPU = res.getBoolean("gpu");
                      PCGamer pc = new PCGamer(marca,modelo,anioAdquisicion,horasUso,tipo,ram,tieneGPU);
