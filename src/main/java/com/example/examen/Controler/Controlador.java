@@ -38,7 +38,7 @@ public class Controlador {
     @FXML private Label lblMensaje;
 
     @FXML private TableView<EquipoGaming> tblDatos;
-    @FXML private TableColumn<EquipoGaming,String> colId;
+    @FXML private TableColumn<EquipoGaming,Integer> colId;
     @FXML private TableColumn<EquipoGaming, String> colTipo;
     @FXML private TableColumn<EquipoGaming, String> colMarca;
     @FXML private TableColumn<EquipoGaming, String> colModelo;
@@ -55,7 +55,7 @@ public class Controlador {
         cmbEstado.getItems().setAll("Disponible", "Reservado", "En Uso", "Mantenimiento");
 
         colId.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getUid()));
-        colTipo.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getUid()));//que es el uid?
+        colTipo.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getTipo()));
         colMarca.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getMarca()));
         colModelo.setCellValueFactory(c->new SimpleObjectProperty<>(c.getValue().getModelo()));
         colAnio.setCellValueFactory(c-> new SimpleObjectProperty<>(c.getValue().getAnioAdquisicion()));
@@ -85,10 +85,9 @@ public class Controlador {
             String modelo = txtModelo.getText().trim();
             int anio = Integer.parseInt(txtAnio.getText().trim());
             int horas = Integer.parseInt(txtHorasUso.getText().trim());
-            String uid = txtIdUnico.getText().trim();
 
             if (tipo == null || rut.length() < 3 || nombre.isEmpty() || apellido.isEmpty()
-                    || marca.isEmpty() || modelo.isEmpty() || uid.isEmpty()) {
+                    || marca.isEmpty() || modelo.isEmpty()) {
                 lblMensaje.setText("Completa todos los campos obligatorios.");
                 lblMensaje.setStyle("-fx-text-fill: #b71c1c;");
                 return;
@@ -97,15 +96,15 @@ public class Controlador {
             EquipoGaming equipo;
             if (tipo.equals("PcGamer")) {
                 int ram = Integer.parseInt(txtRam.getText().trim());
-                equipo = new PCGamer(uid,marca, modelo, anio, horas,"", ram, chkTieneGPU.isSelected());
+                equipo = new PCGamer(marca, modelo, anio, horas,"", ram, chkTieneGPU.isSelected());
             } else if (tipo.equals("Consola")) {
                 int gen = Integer.parseInt(txtGen.getText().trim());
                 int almacenamiento = Integer.parseInt(txtAlmacenamiento.getText().trim());
-                equipo = new Consola(uid,marca, modelo, anio, horas,"", gen, almacenamiento);
+                equipo = new Consola(marca, modelo, anio, horas,"", gen, almacenamiento);
             } else {
                 boolean conVolante = "Con volante".equals(cmbTipoVolante.getValue());
                 int pedales = Integer.parseInt(txtCantPedales.getText().trim());
-                equipo = new SimuladorRacing(uid,marca, modelo, anio, horas,"", conVolante, pedales);
+                equipo = new SimuladorRacing(marca, modelo, anio, horas,"", conVolante, pedales);
             }
 
             Cliente cliente = new Cliente(rut, apellido, nombre, telefono, new ArrayList<>());

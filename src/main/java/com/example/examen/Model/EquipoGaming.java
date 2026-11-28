@@ -3,7 +3,7 @@ package com.example.examen.Model;
 import java.rmi.server.UID;
 
 public abstract class EquipoGaming {
-    private String uid;
+    private int uid;
     private String marca;
     private String modelo;
     private int anioAdquisicion;
@@ -11,8 +11,7 @@ public abstract class EquipoGaming {
     private String tipo;
 
 
-    public EquipoGaming(String uid, String marca, String modelo, int anioAdquisicion, int horasUso, String tipo) {
-        this.uid = uid;
+    public EquipoGaming(String marca, String modelo, int anioAdquisicion, int horasUso, String tipo) {
         this.marca = marca;
         this.modelo = modelo;
         this.anioAdquisicion = anioAdquisicion;
@@ -20,7 +19,7 @@ public abstract class EquipoGaming {
         this.tipo = tipo;
     }
 
-    public String getUid() {return uid;}
+    public int getUid() {return uid;}
     public String getMarca() {return marca;}
     public String getModelo() {return modelo;}
     public int getAnioAdquisicion() {return anioAdquisicion;}
@@ -29,5 +28,9 @@ public abstract class EquipoGaming {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 }

@@ -5,8 +5,8 @@ public class PCGamer extends EquipoGaming{
     private boolean tieneGPU;
     private String tipo = "PcGamer";
 
-    public PCGamer(String uid, String marca, String modelo, int anioAdquisicion, int horasUso, String tipo, int memoriaRam, boolean tieneGPU) {
-        super(uid, marca, modelo, anioAdquisicion, horasUso, tipo);
+    public PCGamer( String marca, String modelo, int anioAdquisicion, int horasUso, String tipo, int memoriaRam, boolean tieneGPU) {
+        super(marca, modelo, anioAdquisicion, horasUso, tipo);
         this.memoriaRam = memoriaRam;
         this.tieneGPU = tieneGPU;
         setTipo("PcGamer");

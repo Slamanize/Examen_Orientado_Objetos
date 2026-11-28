@@ -6,10 +6,9 @@ import com.example.examen.Model.EquipoGaming;
 import com.example.examen.Model.PCGamer;
 import com.example.examen.Model.SimuladorRacing;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Types;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RepositorioEquipoGaming {
 
@@ -17,7 +16,7 @@ public class RepositorioEquipoGaming {
         String sql = "INSERT INTO EquipoGaming (uid, marca, modelo, anioAdquisicion, horasUso, ram, gpu, tipoVolante, cantVolantes, generacion, almacenamiento, rut) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = ConexionBD.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, equipoGaming.getUid());
+            ps.setInt(1, equipoGaming.getUid());
             ps.setString(2, equipoGaming.getMarca());
             ps.setString(3, equipoGaming.getModelo());
             ps.setInt(4, equipoGaming.getAnioAdquisicion());
@@ -86,7 +85,7 @@ public class RepositorioEquipoGaming {
                 ps.setNull(10, Types.INTEGER);
             }
 
-            ps.setString(11, equipoGaming.getUid());
+            ps.setInt(11, equipoGaming.getUid());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -98,11 +97,46 @@ public class RepositorioEquipoGaming {
         String sql = "DELETE FROM EquipoGaming WHERE uid = ?";
         try (Connection conn = ConexionBD.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, equipoGaming.getUid());
+            ps.setInt(1, equipoGaming.getUid());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public List<EquipoGaming> cargar()throws SQLException {
+        List<EquipoGaming> equipoGamings = new ArrayList<>();
+        String sql = "SELECT * FROM equipogaming";
+         try(Connection conn = ConexionBD.getConnection();
+             Statement ment = conn.createStatement();
+             ResultSet res = ment.executeQuery(sql)){
+
+             while (res.next()) {
+                 int id = res.getInt("uid");
+                 String marca = res.getString("marca");
+                 String modelo = res.getString("modelo");
+                 int anioAdquisicion = res.getInt("anioAdquisicion");
+                 int horasUso = res.getInt("horasUso");
+                 String tipo = res.getString("tipo");
+                 if(tipo.equals("PCGamer")){
+                     int ram = res.getInt("ram");
+                     boolean tieneGPU = res.getBoolean("gpu");
+                     PCGamer pc = new PCGamer(marca,modelo,anioAdquisicion,horasUso,tipo,ram,tieneGPU);
+                     pc.setUid(id);
+                     equipoGamings.add(pc);
+                 }else if(tipo.equals("Consola")){
+                     int gen = res.getInt("generacion");
+                     int almacenamiento = res.getInt("almacenamiento");
+                     Consola nin = new Consola(marca,modelo,anioAdquisicion,horasUso,tipo,gen,almacenamiento);
+                     nin.setUid(id);
+                     equipoGamings.add(nin);
+                 }else if(tipo.equals("SimuladorRacing")){
+                     int cantidadPedales = res.getInt("cantPedales");
+                     boolean tipoVolante = res.getBoolean("tipoVolante");
+                 }
+             }
+             return equipoGamings;
+         }
     }
 }

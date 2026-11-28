@@ -11,7 +11,8 @@ CREATE TABLE clientes(
 );
 
 CREATE TABLE EquipoGaming(
-    uid                     varchar(6)          NOT NULL AUTO_INCREMENT,
+    uid                     int(6)          NOT NULL AUTO_INCREMENT,
+    tipo                    varchar(15)         NOT NULL ,
     marca                   varchar(60)         not null ,
     modelo                  varchar(60)         not null ,
     anioAdquisicion         int                 not null ,
@@ -19,9 +20,9 @@ CREATE TABLE EquipoGaming(
     ram                     int                 NULL,
     gpu                     BOOLEAN             NULL,
     tipoVolante             BOOLEAN             NULL,
-    cantVolantes            int(2)              NULL,
+    cantPedales            int(2)              NULL,
     generacion              int(2)              NULL,
-    almacenamiente          int(10)             NULL,
+    almacenamiento          int(10)             NULL,
     rut                     varchar(10)         NOT NULL,
     CONSTRAINT pk_EquipoGaming PRIMARY KEY (uid),
     CONSTRAINT fk_rut FOREIGN KEY (rut) REFERENCES clientes (rut)
