@@ -121,6 +121,7 @@ public class Controlador {
                 limpiar();
                 lblMensaje.setText("Equipo agregado correctamente.");
                 lblMensaje.setStyle("-fx-text-fill: #1b5e20;");
+                mostrarTab();
             } else {
                 lblMensaje.setText("No se pudo guardar en la base de datos.");
                 lblMensaje.setStyle("-fx-text-fill: #b71c1c;");
