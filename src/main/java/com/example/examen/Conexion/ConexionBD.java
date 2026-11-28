@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionBD {
-    private static final String URL ="";
+    private static final String URL ="jbdc:mysql://localhost:3306/arenagamers";
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
