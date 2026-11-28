@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Controlador {
 
@@ -129,7 +128,7 @@ public class Controlador {
             lblMensaje.setStyle("-fx-text-fill: #b71c1c;");
         } catch (Exception e) {
             e.printStackTrace();
-            lblMensaje.setText("Ocurrió un error al agregar.");
+            lblMensaje.setText("Ocurrió un error al agregar: "+e.getMessage());
             lblMensaje.setStyle("-fx-text-fill: #b71c1c;");
         }
     }

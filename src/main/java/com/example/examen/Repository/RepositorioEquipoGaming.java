@@ -13,7 +13,7 @@ import java.util.List;
 public class RepositorioEquipoGaming {
 
     public boolean insertar(EquipoGaming equipoGaming, String rutCliente) throws SQLException {
-        String sql = "INSERT INTO EquipoGaming (uid, marca, modelo, anioAdquisicion, horasUso, ram, gpu, tipoVolante, cantVolantes, generacion, almacenamiento, rut) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO EquipoGaming (uid, marca, modelo, anioAdquisicion, horasUso, ram, gpu, tipoVolante, cantPedales, generacion, almacenamiento, rut,tipo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
         try (Connection conn = ConexionBD.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, equipoGaming.getUid());
@@ -21,6 +21,7 @@ public class RepositorioEquipoGaming {
             ps.setString(3, equipoGaming.getModelo());
             ps.setInt(4, equipoGaming.getAnioAdquisicion());
             ps.setInt(5, equipoGaming.getHorasUso());
+            ps.setString(13, equipoGaming.getTipo());
 
             if (equipoGaming instanceof PCGamer pc) {
                 ps.setInt(6, pc.getMemoriaRam());
@@ -136,7 +137,7 @@ public class RepositorioEquipoGaming {
                      boolean tipoVolante = res.getBoolean("tipoVolante");
                  }
              }
-             return equipoGamings;
          }
+        return equipoGamings;
     }
 }
