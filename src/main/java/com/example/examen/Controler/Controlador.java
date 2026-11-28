@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -48,7 +49,7 @@ public class Controlador {
     @FXML private TableColumn<EquipoGaming, Integer> colTelefono;
     @FXML private TableColumn<EquipoGaming, String> colRut;
 
-    public void initialize(){
+    public void initialize() throws SQLException {
         cmbTipo.getItems().setAll("PcGamer","Consola","SimuladorRacing");
         cmbTipo.valueProperty().addListener((obs,anterior,actual)->tiposActivos());
         cmbTipoVolante.getItems().setAll("Estandar", "Profesional");
@@ -65,6 +66,7 @@ public class Controlador {
         colRut.setCellValueFactory(c-> new SimpleObjectProperty<>());
 
         limpiar();
+        mostrarTab();
     }
 
 
@@ -144,9 +146,14 @@ public class Controlador {
         chkTieneGPU.setDisable(!esTipoP);
     }
 
-
-
-
+    public void mostrarTab(){
+        try{
+            tblDatos.setItems(FXCollections.observableArrayList(repoEquipoGaming.cargar()));
+        }catch(SQLException e){
+            tblDatos.getItems().clear();
+            lblMensaje.setText("Error al leer informacion: "+e.getMessage());
+        }
+    }
 
     public void limpiar(){
         txtRut.clear();
